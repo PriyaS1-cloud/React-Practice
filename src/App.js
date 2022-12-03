@@ -20,12 +20,12 @@ const heading = React.createElement("div", { class: "title" }, [
 ]);
 
 //title component
-TitleComponent = () => {
+const TitleComponent = () => {
   return <h1>Title Component</h1>;
 };
 
 // functional component Using JSX
-HeadingWithJSX = () => {
+const HeadingWithJSX = () => {
   return (
     <div className="title">
       <TitleComponent />
@@ -37,7 +37,7 @@ HeadingWithJSX = () => {
 
 // Header Comonent from Scratch
 
-HeaderComponent = () => {
+const HeaderComponent = () => {
   return (
     <div className="title">
       <img width="100px" height="50px" src={logo} />
