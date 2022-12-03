@@ -2,3 +2,15 @@
     color: red;
     font-size: 16px;
 }
+
+.title{
+    background-color: brown;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+body{
+    padding:0px;
+    box-sizing:border-box;
+}
