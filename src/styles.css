@@ -4,13 +4,46 @@
 }
 
 .title{
-    background-color: brown;
+
     display: flex;
-    align-content: center;
-    justify-content: space-between;
+    font-size: 80px;
+    justify-content: center;
 }
 
 body{
     padding:0px;
     box-sizing:border-box;
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+}
+
+.cards{
+    border: 1px solid black;
+    width: 150px;
+}
+.card-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.search{
+    margin-left: 55px;
+    height: 60px;
+    display: flex;
+}
+.search-input{
+    height: 40px;
+    border-radius: 21px;
+    width: -webkit-fill-available;
+}
+.btn-search{
+    height: 45px;
+    border-radius: 15px; 
+}
+.searchText{
+margin-left: 56px;
+margin-bottom: 15px;
 }

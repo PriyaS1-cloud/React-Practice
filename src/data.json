@@ -1,0 +1,33 @@
+[{
+    "img":"",
+    "name":"Sumati",
+    "company":"Capgemini",
+    "designation":"Software Enginner",
+    "id":"1"
+
+},
+{
+  "img":"",
+  "name":"Prajwali",
+  "company":"TCS",
+  "designation":"Software Enginner",
+  "id":"2"
+
+},
+{
+  "img":"",
+  "name":"Vickey",
+  "company":"Capgemini",
+  "designation":"Software Enginner",
+  "id":"3"
+
+},
+{
+    "img":"",
+    "name":"Priya",
+    "company":"Manhattan Associates",
+    "designation":"Software Enginner",
+    "id":"4"
+
+}
+]
