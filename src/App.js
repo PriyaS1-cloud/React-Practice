@@ -4,10 +4,14 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import logo from "../public/assets/logo.svg";
 import user from "../public/assets/user.svg";
-import Card from "./CardComponent";
-import SearchBar from "./SearchBar";
-import data from "./data.json";
-import NoResult from "./NoResult";
+import Card from "./components/CardComponent";
+import SearchBar from "./components/SearchBar";
+import data from "./utils/data.json";
+import NoResult from "./components/NoResult";
+import {createBrowserRouter, Link, Outlet, Router, RouterProvider} from "react-router-dom";
+import AboutUs from "./components/Aboutus";
+import ErrorComponent from "./components/ErrorComp";
+import User from "./components/User";
 
 
 const h1 = React.createElement(
@@ -64,20 +68,22 @@ const CardContainer = ({ filteredListofMembers }) => {
     return <NoResult></NoResult>
    }
   return filteredListofMembers.map((member) =>
+    <Link to={`/user/${member?.login}`}>
     <Card member={member} key={member.id}></Card>
+    </Link>
   )
 }
 
 
 
-const BodyComponent = () => {
+const SearchComponent = () => {
   const [listofMembers, setlistofMembers] = React.useState([]);
   const [filteredListofMembers, setFilteredListofMembers] = React.useState([]);
 
 
   useEffect(() => {
    fetchTeamData();
-  }, [])
+  }, []);
 
   
   async function fetchTeamData () 
@@ -88,7 +94,10 @@ const BodyComponent = () => {
     teamData = await fetch(`https://api.github.com/users/${teamMemberId}`)
     teamDataList = await teamData.json()
     tempArray.push(teamDataList);
-    setlistofMembers(tempArray);
+    setTimeout(()=>{
+      setlistofMembers(tempArray);
+    },1000)
+    
     })
    
 
@@ -104,16 +113,42 @@ const BodyComponent = () => {
   )
 }
 
+
+
 const AppLayoutComponent = () => {
   return (
     <>
       <HeaderComponent />
-      <BodyComponent />
+      <Outlet></Outlet>
     </>
   )
 }
+const appRoutes = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayoutComponent />,
+    errorElement:<ErrorComponent/>,
+    children:[
+    {
+      path: "/user/:id",
+      element: <User/>,
+    },
+    {
+      path: "/search",
+      element: <SearchComponent/>
+    }
+      
+   
+    ]
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />
+  },
+  
+]);
 
-root.render(<AppLayoutComponent />);
+root.render(<RouterProvider router ={appRoutes}/>);
 
 // this is for my refrence will delete it later
 console.log(HeaderComponent());  //will return an object -which is react element -for dom it is an html

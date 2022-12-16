@@ -22,11 +22,12 @@ body{
 
 .cards{
     border: 1px solid black;
-    width: 150px;
+    width: auto;
 }
 .card-container{
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .search{

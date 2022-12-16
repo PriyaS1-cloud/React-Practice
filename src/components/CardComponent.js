@@ -3,9 +3,10 @@ const Card=(props)=>{
   //   members:data
   // }
   const member=props.member;
+  if(props.member==null) return;
     return(
       <div className="cards">
-         <img src="" alt= {member.name}/>
+         <img src= {member.avatar_url} alt= {member.name}/>
         <h1>{member.name}</h1>
     
         <h2>{member.company}</h2>
