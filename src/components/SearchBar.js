@@ -1,4 +1,7 @@
 import { useState } from "react";
+import UserInfo from "./UserInfo";
+import stateCityObj from "../utils/statecity.json"
+import UseCities from "./UseCities";
 
 const SearchBar = ({ listofMembers, setFilteredListofMembers }) => {
 
@@ -15,20 +18,45 @@ const SearchBar = ({ listofMembers, setFilteredListofMembers }) => {
     }
 
     const [text, setText] = useState("");
-    return (<><div className="search">
-        <input className="search-input" value={text} onChange={
+    const [stateName, setStateName] = useState("Madhya Pradesh");
+    const [cityName, setCityName] = useState("");
+    const cityList= UseCities(stateName);
+    return (
+   
+    <div className="m-5 p-4 bg-yellow-100 flex justify-evenly">
+       
+        <input className="rounded-lg bg-white w-7/12" value={text} onChange={
             (e) => setText(e.target.value)
         }
         />
-        <button className="btn-search" onClick={() => {
+        <button className="p-1 rounded-lg bg-lime-900" onClick={() => {
             filteredMember = searchMembers(text);
-            console.log(filteredMember);
             setFilteredListofMembers(filteredMember)
         }}>Search</button>
+      
+        
 
-    </div>
-        <div className="searchText">Searching For  {text} </div>
-    </>)
+  
+       <select className="rounded-lg mx-1" value={stateName} onChange={(e)=>
+        setStateName(e.target.value)
+       }>
+        {
+            Object.keys(stateCityObj).map((state)=>
+            <option key={state} value={state}>{state}</option>)
+        }
+       </select>
+       <select className="rounded-lg" value={cityName} onChange={(e)=>
+        setCityName(e.target.value)
+       }>
+        {
+            cityList.map((city)=>
+            <option key={city} value={city}>{city}</option>)
+        }
+       </select>
+     
+       </div>
+    
+  )
 
 }
 export default SearchBar;
